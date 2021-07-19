@@ -7,10 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hello!</title>
+<title>簡数電卓</title>
 </head>
 <body>
-<h1>Hello World!</h1>
+<h1>簡数電卓</h1>
 <form action="index.jsp" method="get">
 	<input type="text" name="text" size="40">
 	<input type="submit">
