@@ -41,3 +41,15 @@ p{
 .tab-content.active{
   display: block;
 }
+
+.drag-and-drop {
+    cursor: move;
+    position: absolute;
+    z-index: 1000;
+}
+
+.drag {
+    z-index: 1001;
+}
+
+}
