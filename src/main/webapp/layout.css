@@ -46,6 +46,10 @@ p{
 	cursor: move;
 	position: absolute;
 	z-index: 1000;
+	margin       : auto;
+	width        : 150px;
+	height       : 150px;
+	background   : #ffff1a;
 }
 
 .drag {
