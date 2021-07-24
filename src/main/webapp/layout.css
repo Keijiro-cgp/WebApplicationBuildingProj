@@ -63,16 +63,19 @@ p{
 	left:0;
 	background-color:#f48fb1
 }
+
 #blue-box {
 	top:0;
 	left:110px;
 	background-color:#64b5f6
 }
-#red-box {
+
+#yellow-box {
 	top:0;
 	left:220px;
 	background-color:#ffe082;
 }
+
 #relative {
 	position:relative;
 	height:100px;
