@@ -11,7 +11,7 @@ $(function(){
     for(var i = 0; i < elements.length; i++) {
         elements[i].addEventListener("mousedown", mdown, false);
         elements[i].addEventListener("touchstart", mdown, false);
-    };
+    }
 
     //マウスが押された際の関数
     function mdown(e) {
