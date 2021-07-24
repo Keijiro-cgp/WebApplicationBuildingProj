@@ -43,11 +43,11 @@ p{
 }
 
 .drag-and-drop {
-    cursor: move;
-    position: top;
-    z-index: 1000;
+	cursor: move;
+	position: absolute;
+	z-index: 1000;
 }
 
 .drag {
-    z-index: 1001;
+	z-index: 1001;
 }
