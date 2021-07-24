@@ -75,6 +75,6 @@
 
         //クラス名 .drag も消す
         drag.classList.remove("drag");
-    }
+    };
 
-})()
+});
