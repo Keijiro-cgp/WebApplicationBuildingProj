@@ -1,4 +1,4 @@
-$(function(){
+function(){
 
     //要素の取得
     var elements = document.getElementsByClassName("drag-and-drop");
@@ -76,4 +76,4 @@ $(function(){
         //クラス名 .drag も消す
         drag.classList.remove("drag");
     };
-});
+};
