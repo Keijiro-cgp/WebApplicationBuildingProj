@@ -44,7 +44,7 @@ p{
 
 .drag-and-drop {
     cursor: move;
-    position: absolute;
+    position: top;
     z-index: 1000;
 }
 
