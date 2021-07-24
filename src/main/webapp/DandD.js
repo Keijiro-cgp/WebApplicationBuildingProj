@@ -11,7 +11,7 @@
     for(var i = 0; i < elements.length; i++) {
         elements[i].addEventListener("mousedown", mdown, false);
         elements[i].addEventListener("touchstart", mdown, false);
-    }
+    };
 
     //マウスが押された際の関数
     function mdown(e) {
@@ -24,7 +24,7 @@
             var event = e;
         } else {
             var event = e.changedTouches[0];
-        }
+        };
 
         //要素内の相対座標を取得
         x = event.pageX - this.offsetLeft;
