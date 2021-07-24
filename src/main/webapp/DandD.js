@@ -11,7 +11,7 @@ $(function(){
     for(var i = 0; i < elements.length; i++) {
         elements[i].addEventListener("mousedown", mdown, false);
         elements[i].addEventListener("touchstart", mdown, false);
-    }
+    };
 
     //マウスが押された際の関数
     function mdown(e) {
@@ -33,7 +33,7 @@ $(function(){
         //ムーブイベントにコールバック
         document.body.addEventListener("mousemove", mmove, false);
         document.body.addEventListener("touchmove", mmove, false);
-    }
+    };
 
     //マウスカーソルが動いたときに発火
     function mmove(e) {
@@ -46,7 +46,7 @@ $(function(){
             var event = e;
         } else {
             var event = e.changedTouches[0];
-        }
+        };
 
         //フリックしたときに画面を動かさないようにデフォルト動作を抑制
         e.preventDefault();
@@ -61,7 +61,7 @@ $(function(){
         drag.addEventListener("touchend", mup, false);
         document.body.addEventListener("touchleave", mup, false);
 
-    }
+    };
 
     //マウスボタンが上がったら発火
     function mup(e) {
