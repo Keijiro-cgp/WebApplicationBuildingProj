@@ -26,7 +26,6 @@
 						<div class="drag-and-drop" id="blue-box">－</div>
 						<div class="drag-and-drop" id="yellow-box">×</div>
 						<div class="drag-and-drop" id="green-box">÷</div>
-						<script src="DandD.js"></script>
 					</div>
 				</div>
 
@@ -36,7 +35,6 @@
 						<div class="drag-and-drop" id="red-box">log</div>
 						<div class="drag-and-drop" id="blue-box">(</div>
 						<div class="drag-and-drop" id="yellow-box">)</div>
-						<script src="DandD.js"></script>
 					</div>
 				</div>
 
@@ -46,21 +44,52 @@
 						<div class="drag-and-drop" id="red-box">nothing</div>
 						<div class="drag-and-drop" id="blue-box">is</div>
 						<div class="drag-and-drop" id="yellow-box">here</div>
-						<script src="DandD.js"></script>
 					</div>
 				</div>
 
 				<div class="tab-content">
 					<p>タブ4タブ4タブ4タブ4</p>
+					<div class="example-origin">
+						<div
+							id="draggable-1"
+							class="example-draggable"
+							draggable="true"
+							ondragstart="onDragStart(event);"
+						>
+							draggable
+						</div>
+						<div
+							id="draggable-2"
+							class="example-draggable"
+							draggable="true"
+							ondragstart="onDragStart(event);"
+						>
+							draggable
+						</div>
+						<div
+							id="draggable-3"
+							class="example-draggable"
+							draggable="true"
+							ondragstart="onDragStart(event);"
+						>
+							draggable
+						</div>
+					</div>
 				</div>
+
 			</div>
 
 			<div class="drop-content">
-				<div class="dropzone">
+				<div
+					class="dropzone"
+					ondragover="onDragOver(event);"
+					ondrop="onDrop(event);"
+				>
 					dropzone
 				</div>
 			</div>
 
 		</div>
+		<script src="DandD.js"></script>
 	</body>
 </html>
