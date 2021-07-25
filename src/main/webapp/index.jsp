@@ -205,6 +205,11 @@ double calculate(Member m) {
 				debug_log += "div: " + n.get(i-1) + " / " + m.right.get_num() + "<br>";
 				n.set(i-1, n.get(i-1) / m.right.get_num());
 			}
+		} else if (m.ope == '^') {
+			if(n.size == 0) {
+				debug_log += "pow: " + n.get(i-1) + " ^ " + m.right.get_num() + "<br>";
+				n.add();
+			}
 		}
 		m = m.right;
 	}
