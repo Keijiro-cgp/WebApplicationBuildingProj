@@ -110,7 +110,7 @@ String check_text(String text, Member head) {
 			if('0' <= c && c <= '9') {
 				m.set_num((double)(c - '0'));
 				result += c;
-			} else if (c == '+' || c == '-' || c == '*' || c == '/') {
+			} else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == 'r') {
 				m.set_ope(c);
 				result += c;
 			} else {
@@ -149,6 +149,8 @@ String calculate(Member m) {
 		case '-': n = subtract(n, m.right.num); break;
 		case '*': n = multiply(n, m.right.num); break;
 		case '/': n = divide(n, m.right.num); break;
+		case '^': n = power(n,m.right.num); break;
+		case 'r': n = root(n); break;
 		default: result = "error"; break;
 		}
 		m = m.right;
@@ -171,6 +173,20 @@ double multiply(double a, double b) {
 
 double divide(double a, double b) {
 	return a / b;
+}
+
+double power(double a, double b){
+	double n = 1;
+	while(b != 0){
+		n = n * a;
+		--b;
+	}
+	return n;
+}
+
+double root(double a){
+	double n = Math.sqrt(a);
+	return n;
 }
 %>
 <%
