@@ -28,6 +28,14 @@ class Member {
 			return calculate(head);
 		}
 	}
+	
+	double get_right_num() {
+		if(right.ope == '^') {
+			return power(right.get_num(), right.get_right_num());
+		} else {
+			return right.get_num();
+		}
+	}
 }
 
 String prettyPrintHTML(String s) {
@@ -174,41 +182,44 @@ double calculate(Member m) {
 				i++;
 			}
 			debug_log += "add: " + m.right.get_num() + "<br>";
-			n.add(m.right.get_num());
+			n.add(m.get_right_num());
 			i++;
 		} else if(m.ope == '-') {
 			if(n.size() == 0) {
-				debug_log += "add: " + m.get_num() + "<br>";
+				debug_log += "sub: " + m.get_num() + "<br>";
 				n.add(m.get_num());
 				i++;
 			}
 			double d = 0;
-			d = m.right.get_num() * -1;
-			debug_log += "add: " + d + "<br>";
+			d = m.get_right_num() * -1;
+			debug_log += "sub: " + d + "<br>";
 			n.add(d);
 			i++;
 		} else if(m.ope == '*') {
 			if(n.size() == 0) {
-				debug_log += "add: " + m.get_num() + " * " + m.right.get_num() + "<br>";
-				n.add(m.get_num() * m.right.get_num());
+				debug_log += "mul: " + m.get_num() + " * " + m.get_right_num() + "<br>";
+				n.add(m.get_num() * m.get_right_num());
 				i++;
 			} else {
-				debug_log += "mul: " + n.get(i-1) + " * " + m.right.get_num() + "<br>";
-				n.set(i-1, n.get(i-1) * m.right.get_num());
+				debug_log += "mul: " + n.get(i-1) + " * " + m.get_right_num() + "<br>";
+				n.set(i-1, n.get(i-1) * m.get_right_num());
 			}
 		} else if (m.ope == '/') {
 			if(n.size() == 0) {
-				debug_log += "add: " + m.get_num() + " / " + m.right.get_num() + "<br>";
-				n.add(m.get_num() / m.right.get_num());
+				debug_log += "div: " + m.get_num() + " / " + m.get_right_num() + "<br>";
+				n.add(m.get_num() / m.get_right_num());
 				i++;
 			} else {
-				debug_log += "div: " + n.get(i-1) + " / " + m.right.get_num() + "<br>";
-				n.set(i-1, n.get(i-1) / m.right.get_num());
+				debug_log += "div: " + n.get(i-1) + " / " + m.get_right_num() + "<br>";
+				n.set(i-1, n.get(i-1) / m.get_right_num());
 			}
 		} else if (m.ope == '^') {
-			if(n.size == 0) {
-				debug_log += "pow: " + n.get(i-1) + " ^ " + m.right.get_num() + "<br>";
-				n.add();
+			if(n.size() == 0) {
+				debug_log += "pow: " + m.get_num() + " ^ " + m.get_right_num() + "<br>";
+				n.add(power(m.get_num(), m.get_right_num()));
+				i++;
+			} else {
+				//何もしない
 			}
 		}
 		m = m.right;
