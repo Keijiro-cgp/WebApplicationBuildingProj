@@ -6,6 +6,7 @@ ul{
 p{
   margin: 0;
 }
+
 .wrap-tab{
   overflow: hidden;
 }
@@ -90,4 +91,16 @@ p{
 	flex-basis: 100%;
 	flex-grow: 1;
 	padding: 10px;
+}
+
+.sortable-chosen {
+  color: #fff;
+  background-color: #edb54c;
+}
+
+.list {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

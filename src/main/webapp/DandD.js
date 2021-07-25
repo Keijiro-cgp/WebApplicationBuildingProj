@@ -95,8 +95,8 @@
 			.clearData();
 	}
 
-let sortable = Sortable.create(draggable, {
-	group: "draggable",
-	handle: ".my-handle",
-	animation: 100
+var el = document.getElementById('items');
+var sortable = Sortable.create(el);
+var sortable = new Sortable(el, {
+		animation: 150
 });
