@@ -141,11 +141,36 @@ String print_member(Member head) {
 
 String calculate(Member m) {
 	String result = "";
-	int n;
-	do {
-		
-	}while(m.right != null);
+	double n;
+	n = m.num;
+	while(m.right != null) {
+		switch(m.ope) {
+		case '+': n = add(n, m.right.num); break;
+		case '-': n = subtract(n, m.right.num); break;
+		case '*': n = multiply(n, m.right.num); break;
+		case '/': n = divide(n, m.right.num); break;
+		default: result = "error"; break;
+		}
+		m = m.right;
+	}
+	result = Double.valueOf(n).toString();
 	return result;
+}
+
+double add(double a, double b) {
+	return a + b;
+}
+
+double subtract(double a, double b) {
+	return a - b;
+}
+
+double multiply(double a, double b) {
+	return a * b;
+}
+
+double divide(double a, double b) {
+	return a / b;
 }
 %>
 <%
@@ -165,6 +190,7 @@ String debug_txt = "";
 
 if (text != null) {
 	msg = prettyPrintHTML(check_text(text, m));
+	result = prettyPrintHTML(calculate(m));
 	debug_txt = print_member(m);
 }
 
@@ -182,6 +208,7 @@ if (text != null) {
 	<input type="submit">
 </form>
 <p><%= msg %></p>
+<p>result = <%= result %></p>
 <p><%= debug_txt %></p>
 ///Debug log///
 <p><%= debug_log %></p>
