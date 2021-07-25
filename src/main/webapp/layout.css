@@ -87,10 +87,9 @@ p{
 	height:100px;
 }
 
-.example-draggable {
-  background-color: #4AAE9B;
-  font-weight: normal;
-  margin-bottom: 10px;
-  margin-top: 10px;
+.dropzone {
+  background-color: #6DB65B;
+  flex-basis: 100%;
+  flex-grow: 1;
   padding: 10px;
 }
