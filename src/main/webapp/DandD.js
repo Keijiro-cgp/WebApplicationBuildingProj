@@ -97,6 +97,3 @@
 
 var el = document.getElementById('items');
 var sortable = Sortable.create(el);
-var sortable = new Sortable(el, {
-		animation: 150
-});
