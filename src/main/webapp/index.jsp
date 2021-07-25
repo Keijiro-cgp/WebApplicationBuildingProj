@@ -119,7 +119,7 @@ String check_text(String text, Member head) {
 			if('0' <= c && c <= '9') {
 				m.set_num((double)(c - '0'));
 				result += c;
-			} else if (c == '+' || c == '-' || c == '*' || c == '/') {
+			} else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == 'r' || c == 'l' || c == 's' || c == 'c' || c == 't') {
 				m.set_ope(c);
 				result += c;
 			} else if (c == '(') {
@@ -222,20 +222,61 @@ double calculate(Member m) {
 	return result;
 }
 
+//足し算
 double add(double a, double b) {
 	return a + b;
 }
-
+//引き算
 double subtract(double a, double b) {
 	return a - b;
 }
-
+//掛け算
 double multiply(double a, double b) {
 	return a * b;
 }
-
+//割り算
 double divide(double a, double b) {
 	return a / b;
+}
+//累乗
+double power(double a, double b){
+	double n = 1;
+	while(b != 0){
+		n = n * a;
+		--b;
+	}
+	return n;
+}
+//平方根
+double root(double a){
+	double n = Math.sqrt(a);
+	return n;
+}
+//自然対数
+double log(double a){
+	double n = Math.log(a);
+	return n;
+}
+//sin関数
+double sin(double a){
+	//度からラジアンに変換
+	double radian = Math.toRadians(a);
+	double n = Math.sin(radian);
+	return n;
+}
+//cos関数
+double cos(double a){
+	//度からラジアンに変換
+	double radian = Math.toRadians(a);
+	double n = Math.cos(radian);
+	return n;
+}
+//tan関数
+double tan(double a){
+	//度からラジアンに変換
+	double radian = Math.toRadians(a);
+	double n = Math.tan(radian);
+	return n;
 }
 %>
 <%
