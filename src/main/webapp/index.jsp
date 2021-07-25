@@ -104,7 +104,7 @@ String check_text(String text, Member head) {
 	Member m;
 	m = head;
 	for (int i=0; i<n; i++) {
-		debug_log += "loop:" + i + "<br>";
+		//debug_log += "loop:" + i + "<br>";
 		char c = text.charAt(i);
 		if(c != ' ') {
 			if('0' <= c && c <= '9') {
@@ -118,7 +118,7 @@ String check_text(String text, Member head) {
 				break;
 			}
 			if(m.ope != '0') {
-				debug_log += "num:" + m.num + ", ope:" + m.ope + "<br>";
+				//debug_log += "num:" + m.num + ", ope:" + m.ope + "<br>";
 				Member tmp = new Member();
 				m.right = tmp;
 				m = tmp;
@@ -141,19 +141,57 @@ String print_member(Member head) {
 
 String calculate(Member m) {
 	String result = "";
-	double n;
-	n = m.num;
+	ArrayList<Double> n = new ArrayList<>();
+	double r = 0;
+	int i = 0;
 	while(m.right != null) {
-		switch(m.ope) {
-		case '+': n = add(n, m.right.num); break;
-		case '-': n = subtract(n, m.right.num); break;
-		case '*': n = multiply(n, m.right.num); break;
-		case '/': n = divide(n, m.right.num); break;
-		default: result = "error"; break;
+		debug_log += "No." + i + "<br>";
+		if(m.ope == '+') {
+			if(n.size() == 0) {
+				debug_log += "add: " + m.num + "<br>";
+				n.add(m.num);
+				i++;
+			}
+			debug_log += "add: " + m.right.num + "<br>";
+			n.add(m.right.num);
+			i++;
+		} else if(m.ope == '-') {
+			if(n.size() == 0) {
+				debug_log += "add: " + m.num + "<br>";
+				n.add(m.num);
+				i++;
+			}
+			m.right.num *= -1;
+			debug_log += "add: " + m.right.num + "<br>";
+			n.add(m.right.num);
+			i++;
+		} else if(m.ope == '*') {
+			if(n.size() == 0) {
+				debug_log += "add: " + m.num + " * " + m.right.num + "<br>";
+				n.add(m.num * m.right.num);
+				i++;
+			} else {
+				debug_log += "mul: " + n.get(i-1) + " * " + m.right.num + "<br>";
+				n.set(i-1, n.get(i-1) * m.right.num);
+			}
+		} else if (m.ope == '/') {
+			if(n.size() == 0) {
+				debug_log += "add: " + m.num + " / " + m.right.num + "<br>";
+				n.add(m.num / m.right.num);
+				i++;
+			} else {
+				debug_log += "div: " + n.get(i-1) + " / " + m.right.num + "<br>";
+				n.set(i-1, n.get(i-1) / m.right.num);
+			}
 		}
 		m = m.right;
 	}
-	result = Double.valueOf(n).toString();
+	debug_log += "size: " + n.size() + "<br>";
+	for (int k=0; k<n.size(); k++) {
+		debug_log += "r = " + r + "<br>";
+		r += n.get(k);
+	}
+	result = Double.valueOf(r).toString();
 	return result;
 }
 
