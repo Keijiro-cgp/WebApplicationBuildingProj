@@ -95,5 +95,5 @@
 			.clearData();
 	}
 
-var el = document.getElementById('items');
+var el = document.getElementById('draggable');
 var sortable = Sortable.create(el);
