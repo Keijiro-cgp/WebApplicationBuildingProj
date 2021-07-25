@@ -87,6 +87,14 @@ p{
 	height:100px;
 }
 
+.drop-content {
+  border: 2px solid #DFA612;
+  color: black;
+  display: flex;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
 .dropzone {
   background-color: #6DB65B;
   flex-basis: 100%;
