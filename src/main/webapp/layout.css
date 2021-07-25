@@ -58,30 +58,6 @@ p{
 	z-index: 1001;
 }
 
-#red-box {
-	top:0;
-	left:0;
-	background-color:#f48fb1
-}
-
-#blue-box {
-	top:0;
-	left:110px;
-	background-color:#64b5f6
-}
-
-#yellow-box {
-	top:0;
-	left:220px;
-	background-color:#ffe082;
-}
-
-#green-box {
-	top:0;
-	left:330px;
-	background-color:#228b22;
-}
-
 #relative {
 	position:relative;
 	height:100px;
