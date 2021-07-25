@@ -5,9 +5,10 @@
 String debug_log = "";
 
 class Member {
-	double num = 0;
+	private double num = 0;
 	char ope = '0';
 	Member right;
+	Member head;
 	
 	void set_num(double n) {
 		int i = 0;
@@ -17,6 +18,14 @@ class Member {
 	void set_ope(char o) {
 		if(ope == '0') {
 			ope = o;
+		}
+	}
+	
+	double get_num() {
+		if(head == null) {
+			return num;
+		} else {
+			return calculate(head);
 		}
 	}
 }
@@ -113,6 +122,20 @@ String check_text(String text, Member head) {
 			} else if (c == '+' || c == '-' || c == '*' || c == '/') {
 				m.set_ope(c);
 				result += c;
+			} else if (c == '(') {
+				result += c;
+				Member m2 = new Member();
+				String s = "";
+				i++;
+				while(true) {
+					c = text.charAt(i);
+					s += c;
+					result += c;
+					if(c == ')') break;
+					i++;
+				}
+				check_text(s, m2);
+				m.head = m2;
 			} else {
 				result = "error:入力に無効な文字が含まれています。";
 				break;
@@ -124,7 +147,6 @@ String check_text(String text, Member head) {
 				m = tmp;
 			}
 		}
-		
 	}
 	return result;
 }
@@ -133,55 +155,55 @@ String print_member(Member head) {
 	String result = "";
 	Member m = head;
 	do {
-		result += "(" + m.num + " " + m.ope + ")";
+		result += "(" + m.get_num() + " " + m.ope + ")";
 		m = m.right;
 	} while(m != null);
 	return result;
 }
 
-String calculate(Member m) {
-	String result = "";
+double calculate(Member m) {
+	double result = 0;
 	ArrayList<Double> n = new ArrayList<>();
 	double r = 0;
 	int i = 0;
 	while(m.right != null) {
-		debug_log += "No." + i + "<br>";
 		if(m.ope == '+') {
 			if(n.size() == 0) {
-				debug_log += "add: " + m.num + "<br>";
-				n.add(m.num);
+				debug_log += "add: " + m.get_num() + "<br>";
+				n.add(m.get_num());
 				i++;
 			}
-			debug_log += "add: " + m.right.num + "<br>";
-			n.add(m.right.num);
+			debug_log += "add: " + m.right.get_num() + "<br>";
+			n.add(m.right.get_num());
 			i++;
 		} else if(m.ope == '-') {
 			if(n.size() == 0) {
-				debug_log += "add: " + m.num + "<br>";
-				n.add(m.num);
+				debug_log += "add: " + m.get_num() + "<br>";
+				n.add(m.get_num());
 				i++;
 			}
-			m.right.num *= -1;
-			debug_log += "add: " + m.right.num + "<br>";
-			n.add(m.right.num);
+			double d = 0;
+			d = m.right.get_num() * -1;
+			debug_log += "add: " + d + "<br>";
+			n.add(d);
 			i++;
 		} else if(m.ope == '*') {
 			if(n.size() == 0) {
-				debug_log += "add: " + m.num + " * " + m.right.num + "<br>";
-				n.add(m.num * m.right.num);
+				debug_log += "add: " + m.get_num() + " * " + m.right.get_num() + "<br>";
+				n.add(m.get_num() * m.right.get_num());
 				i++;
 			} else {
-				debug_log += "mul: " + n.get(i-1) + " * " + m.right.num + "<br>";
-				n.set(i-1, n.get(i-1) * m.right.num);
+				debug_log += "mul: " + n.get(i-1) + " * " + m.right.get_num() + "<br>";
+				n.set(i-1, n.get(i-1) * m.right.get_num());
 			}
 		} else if (m.ope == '/') {
 			if(n.size() == 0) {
-				debug_log += "add: " + m.num + " / " + m.right.num + "<br>";
-				n.add(m.num / m.right.num);
+				debug_log += "add: " + m.get_num() + " / " + m.right.get_num() + "<br>";
+				n.add(m.get_num() / m.right.get_num());
 				i++;
 			} else {
-				debug_log += "div: " + n.get(i-1) + " / " + m.right.num + "<br>";
-				n.set(i-1, n.get(i-1) / m.right.num);
+				debug_log += "div: " + n.get(i-1) + " / " + m.right.get_num() + "<br>";
+				n.set(i-1, n.get(i-1) / m.right.get_num());
 			}
 		}
 		m = m.right;
@@ -191,7 +213,7 @@ String calculate(Member m) {
 		debug_log += "r = " + r + "<br>";
 		r += n.get(k);
 	}
-	result = Double.valueOf(r).toString();
+	result = r;
 	return result;
 }
 
@@ -228,7 +250,7 @@ String debug_txt = "";
 
 if (text != null) {
 	msg = prettyPrintHTML(check_text(text, m));
-	result = prettyPrintHTML(calculate(m));
+	result = prettyPrintHTML(Double.valueOf(calculate(m)).toString());
 	debug_txt = print_member(m);
 }
 
