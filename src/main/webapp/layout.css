@@ -109,7 +109,7 @@ p{
 	font-weight: bold;
 }
 
-.dropzone {
+.example-dropzone {
 	background-color:#dcdcdc;
 	flex-basis: 100%;
 	flex-grow: 1;

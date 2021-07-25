@@ -65,6 +65,7 @@
 //クラス名 .drag も消す
 		drag.classList.remove("drag");
 	}
+})()
 
 //タブ4操作
 
@@ -93,5 +94,3 @@
 			.dataTransfer
 			.clearData();
 	}
-
-})()
