@@ -5,13 +5,12 @@
 String debug_log = "";
 
 class Member {
-	private double num = 0;
+	double num = 0;
 	char ope = '0';
 	Member right;
 	Member head;
 	
 	void set_num(double n) {
-		int i = 0;
 		num = (num * 10) + n;
 	}
 	
@@ -116,20 +115,30 @@ public class MyHttpClient {
 
 String check_text(String text, Member head) {
 	String result = "";
-	int n, num = 0, ope = 0;
+	int n, num = 0, shift = 0;
 	n = text.length();
 	Member m;
 	m = head;
 	for (int i=0; i<n; i++) {
-		//debug_log += "loop:" + i + "<br>";
+		debug_log += "loop:" + i + "<br>";
 		char c = text.charAt(i);
+		debug_log += "read: " + c + "<br>";
 		if(c != ' ') {
 			if('0' <= c && c <= '9') {
 				m.set_num((double)(c - '0'));
 				result += c;
-			} else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == 'r' || c == 'l' || c == 's' || c == 'c' || c == 't') {
+			} else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
 				m.set_ope(c);
 				result += c;
+			} else if (c == '.') {
+				result += c;
+				char c2 = text.charAt(i + 1);
+				while ('0' <= c2 && c2 <= '9') {
+					shift++;
+					if(i + shift + 1 >= n) break;
+					c2 = text.charAt(i + shift + 1);
+				}
+				debug_log += "shift = " + shift + "<br>";
 			} else if (c == '(') {
 				result += c;
 				Member m2 = new Member();
@@ -149,13 +158,20 @@ String check_text(String text, Member head) {
 				break;
 			}
 			if(m.ope != '0') {
-				//debug_log += "num:" + m.num + ", ope:" + m.ope + "<br>";
+				debug_log += "10 ^ shift:" + power(10, shift) + ", m.num:";
+				m.num /= power(10, shift);
+				debug_log += m.num / power(10, shift) + "<br>";
+				shift = 0;
 				Member tmp = new Member();
 				m.right = tmp;
 				m = tmp;
 			}
 		}
 	}
+	debug_log += "10 ^ shift:" + power(10, shift) + ", m.num:";
+	m.num /= power(10, shift);
+	debug_log += m.num / power(10, shift) + "<br>";
+	shift = 0;
 	return result;
 }
 
@@ -308,7 +324,7 @@ String debug_txt = "";
 if (text != null) {
 	msg = prettyPrintHTML(check_text(text, m));
 	result = prettyPrintHTML(Double.valueOf(calculate(m)).toString());
-	debug_txt = print_member(m);
+	debug_txt = prettyPrintHTML(print_member(m));
 }
 
 %>
@@ -316,16 +332,21 @@ if (text != null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hello!</title>
+<title>簡数電卓</title>
 </head>
 <body>
-<h1>Hello World!</h1>
+<h1>Welcome to 簡数電卓!</h1>
 <form action="index.jsp" method="get">
 	<input type="text" name="text" size="40">
-	<input type="submit">
+	<input type="submit" value="計算">
 </form>
-<p><%= msg %></p>
-<p>result = <%= result %></p>
+<p>計算結果 = <%= result %></p>
+<h2>//使い方//</h2><br>
+<p>
+	四則演算(+ - * /)と累乗(^)、カッコ付きの計算ができます。<br>
+	テキストボックスに計算式を入力し、「計算」ボタンを押せば「計算結果 = 」の横に計算結果が表示されます。
+</p>
+<p>入力文字列 = <%= msg %></p>
 <p><%= debug_txt %></p>
 ///Debug log///
 <p><%= debug_log %></p>
